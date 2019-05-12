@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="contactMarginTop">60dp</dimen>
+    <dimen name="layoutsMarginLeft">60dp</dimen>
+    <dimen name="profileTextSize">20sp</dimen>
+    <dimen name="contactTextSize">40sp</dimen>
+    <dimen name="marginLeft">34dp</dimen>
+    <dimen name="iconSize">30dp</dimen>
+    <dimen name="iconMargin">5dp</dimen>
+    <dimen name="profileImageMarginTop">40dp</dimen>
+    <dimen name="nameMarginTop">20dp</dimen>
+    <dimen name="titleTextSize">20sp</dimen>
+    <dimen name="textIndent">12dp</dimen>
+    <dimen name="descriptionLayoutMarginSide">10dp</dimen>
+    <dimen name="descriptionLayoutMarginTop">20dp</dimen>
+    <dimen name="professionTextMarginBottom">10dp</dimen>
+    <dimen name="contactTextMarginBetween">20dp</dimen>
+</resources>

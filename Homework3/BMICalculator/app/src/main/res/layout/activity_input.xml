@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColorMain"
+        tools:context=".ui.input.InputActivity">
+
+    <RelativeLayout
+            android:id="@+id/inputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+                android:id="@+id/enterHeightText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/titleTextSize"
+                android:layout_marginStart="@dimen/startMargin"
+                android:text="@string/enterHeightText"/>
+
+        <EditText
+                android:id="@+id/heightInput"
+                android:layout_width="@dimen/inputWidth"
+                android:layout_height="@dimen/inputHeight"
+                android:textSize="@dimen/inputTextSize"
+                android:layout_below="@id/enterHeightText"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:hint="@string/heightInputHint"/>
+
+        <TextView
+                android:id="@+id/enterWeightText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/titleTextSize"
+                android:layout_marginStart="@dimen/startMargin"
+                android:layout_below="@id/heightInput"
+                android:text="@string/enterWeightText"/>
+
+        <EditText
+                android:id="@+id/weightInput"
+                android:layout_width="@dimen/inputWidth"
+                android:layout_height="@dimen/inputHeight"
+                android:textSize="@dimen/inputTextSize"
+                android:layout_below="@id/enterWeightText"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"
+                android:hint="@string/weightInputHint"/>
+
+        <Button
+                android:id="@+id/calculateButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/weightInput"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/buttonMarginTop"
+                android:textSize="@dimen/buttonTextSize"
+                android:text="@string/calculateButtonText"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/resultLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/resultLayoutSideMargin"
+            android:layout_marginRight="@dimen/resultLayoutSideMargin"
+            app:layout_constraintTop_toBottomOf="@id/inputLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="200dp"
+                android:layout_height="400dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/obese"
+                android:contentDescription="@string/imageViewContentDescription"/>
+
+        <TextView
+                android:id="@+id/resultIndexText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/resultIndexText"
+                android:layout_toEndOf="@id/imageView"
+                android:layout_alignParentEnd="true"
+                android:textSize="@dimen/resultTitleTextSize"
+                android:textStyle="bold"
+                android:layout_marginTop="26dp"
+                android:textAlignment="center"/>
+
+        <TextView
+                android:id="@+id/resultTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/obeseTextTitle"
+                android:layout_toEndOf="@id/imageView"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/resultIndexText"
+                android:textSize="@dimen/resultTitleTextSize"
+                android:textStyle="bold"
+                android:textAlignment="center"/>
+
+        <TextView
+                android:id="@+id/resultDescriptionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/obeseTextDescription"
+                android:layout_toEndOf="@id/imageView"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/resultTitleText"
+                android:layout_marginTop="20dp"
+                android:textSize="@dimen/descriptionTextSize"
+                android:textAlignment="center"/>
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

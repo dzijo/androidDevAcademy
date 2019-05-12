@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="titleTextSize">28sp</dimen>
+    <dimen name="startMargin">10dp</dimen>
+    <dimen name="inputWidth">169dp</dimen>
+    <dimen name="inputHeight">52dp</dimen>
+    <dimen name="inputTextSize">28sp</dimen>
+    <dimen name="buttonMarginTop">20dp</dimen>
+    <dimen name="buttonTextSize">26sp</dimen>
+    <dimen name="resultTitleTextSize">32sp</dimen>
+    <dimen name="descriptionTextSize">12sp</dimen>
+    <dimen name="resultLayoutSideMargin">20dp</dimen>
+</resources>

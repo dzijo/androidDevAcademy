@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="marginTopTopRow">40dp</dimen>
+    <dimen name="marginStartLeftColumn">40dp</dimen>
+    <dimen name="diceSize">96dp</dimen>
+    <dimen name="marginBetweenDice">20dp</dimen>
+    <dimen name="textSize">60sp</dimen>
+    <dimen name="rollCounterTextSize">40sp</dimen>
+</resources>

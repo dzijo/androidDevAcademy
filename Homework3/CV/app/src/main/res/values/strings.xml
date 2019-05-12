@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CV</string>
+    <string name="profile_image">Profile Image</string>
+    <string name="contactString">Contact</string>
+    <string name="nameString">Matej Džijan</string>
+    <string name="professionTextString">Student</string>
+    <string name="numberString">+385989489877</string>
+    <string name="emailString">matej.dzijan@gmail.com</string>
+    <string name="aboutTitle">About Me</string>
+    <string name="educationTitle">Education</string>
+    <string name="experienceTitle">Experience</string>
+    <string name="languagesTitle">Languages</string>
+</resources>
