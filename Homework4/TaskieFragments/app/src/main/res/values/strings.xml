@@ -16,7 +16,7 @@
     <string name="categoryAboutAuthor">About Author</string>
 
     <string name="about_author">About Author</string>
-    <string name="about_author_text">Matej Džijan &#xA;Student at FERIT Osijek</string>
+    <string name="about_author_text">Matej Džijan &#xD;Student at FERIT Osijek</string>
     <string name="about_app">About App</string>
     <string name="about_app_text">Taskie App. Used to take care of your tasks. &#xA;Version 1.0.</string>
 </resources>
