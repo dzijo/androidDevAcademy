@@ -12,7 +12,11 @@
     <string name="no_data">No data! :(</string>
     <string name="tasksTitle">Tasks</string>
     <string name="aboutTitle">About</string>
+    <string name="categoryAboutApp">About App</string>
+    <string name="categoryAboutAuthor">About Author</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_author">About Author</string>
+    <string name="about_author_text">Matej Džijan &#xA;Student at FERIT Osijek</string>
+    <string name="about_app">About App</string>
+    <string name="about_app_text">Taskie App. Used to take care of your tasks. &#xA;Version 1.0.</string>
 </resources>

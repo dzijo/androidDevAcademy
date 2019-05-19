@@ -7,4 +7,6 @@
     <dimen name="detailsPriorityHeight">100dp</dimen>
     <dimen name="itemPriorityWidth">36dp</dimen>
     <dimen name="itemPriorityHeight">36dp</dimen>
+    <dimen name="TitleTextSize">50sp</dimen>
+    <dimen name="FlavorTestSize">40sp</dimen>
 </resources>
