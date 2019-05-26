@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.fragments.TaskDetailsFragment">
-    <TextView
+    <EditText
             android:id="@+id/detailsTaskTitle"
             android:layout_width="@dimen/match_constraint"
             android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             style="@style/HeadingTextView"/>
-    <TextView
+    <EditText
             android:id="@+id/detailsTaskDescription"
             android:layout_width="@dimen/match_constraint"
             android:layout_height="wrap_content"
@@ -30,12 +30,13 @@
             app:layout_constraintRight_toRightOf="@id/detailsTaskTitle"
             app:layout_constraintTop_toBottomOf="@id/detailsTaskDescription"/>
     <Button
+            android:id="@+id/detailsSaveChanges"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="100dp"
-            android:text="@string/change_task"/>
+            android:text="@string/save_changes"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

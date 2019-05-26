@@ -19,5 +19,5 @@
     <string name="about_author_text">Matej Džijan &#xD;Student at FERIT Osijek</string>
     <string name="about_app">About App</string>
     <string name="about_app_text">Taskie App. Used to take care of your tasks. &#xA;Version 1.0.</string>
-    <string name="change_task">Change Task</string>
+    <string name="save_changes">Save Changes</string>
 </resources>

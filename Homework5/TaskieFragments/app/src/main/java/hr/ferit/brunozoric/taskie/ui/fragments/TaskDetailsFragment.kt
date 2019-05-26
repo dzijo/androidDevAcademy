@@ -6,8 +6,8 @@ import hr.ferit.brunozoric.taskie.R
 import hr.ferit.brunozoric.taskie.common.EXTRA_TASK_ID
 import hr.ferit.brunozoric.taskie.common.displayToast
 import hr.ferit.brunozoric.taskie.common.invisible
+import hr.ferit.brunozoric.taskie.model.Priority
 import hr.ferit.brunozoric.taskie.model.Task
-import hr.ferit.brunozoric.taskie.persistence.Repository
 import hr.ferit.brunozoric.taskie.persistence.TaskieRoomRepository
 import hr.ferit.brunozoric.taskie.ui.fragments.base.BaseFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,6 +17,7 @@ class TaskDetailsFragment : BaseFragment() {
 
     private val repository = TaskieRoomRepository()
     private var taskID = NO_TASK
+    private lateinit var priority: Priority
 
     override fun getLayoutResourceId(): Int {
         return R.layout.fragment_task_details
@@ -38,13 +39,19 @@ class TaskDetailsFragment : BaseFragment() {
     }
 
     private fun displayTask(task: Task) {
-        detailsTaskTitle.text = task.title
-        detailsTaskTitle.setOnClickListener { titleClicked(it) }
-        detailsTaskDescription.text = task.description
-        detailsPriorityView.setBackgroundResource(task.priority.getColor())
+        detailsSaveChanges.setOnClickListener { saveChanges(task) }
+        detailsTaskTitle.setText(task.title)
+        detailsTaskDescription.setText(task.description)
+        priority = task.priority
+        detailsPriorityView.setBackgroundResource(priority.getColor())
+        detailsPriorityView.setOnClickListener { changePriority(it) }
     }
 
-    private fun titleClicked(it: View) {
+    private fun saveChanges(task: Task) {
+        repository.editTask(task, detailsTaskTitle.text.toString(), detailsTaskDescription.text.toString(), priority)
+    }
+
+    private fun changePriority(it: View) {
 
     }
 

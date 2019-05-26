@@ -5,6 +5,8 @@ import hr.ferit.brunozoric.taskie.Taskie
 
 object Prefs {
 
+    val PRIORITY_KEY = "Priority Key"
+
     private fun sharedPrefs() = PreferenceManager.getDefaultSharedPreferences(Taskie.getAppContext())
 
     fun storeInt(key: String, value: Int) {

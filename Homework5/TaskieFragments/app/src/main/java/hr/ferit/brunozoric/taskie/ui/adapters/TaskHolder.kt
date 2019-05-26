@@ -1,5 +1,6 @@
 package hr.ferit.brunozoric.taskie.ui.adapters
 
+import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
@@ -13,24 +14,15 @@ class TaskHolder(override val containerView: View) : RecyclerView.ViewHolder(con
 
     fun bindData(task: Task, onItemSelected: (Task) -> Unit, onItemSwiped: (Task) -> Unit) {
 
-        containerView.setOnClickListener { onItemSelected(task) }
         containerView.setOnTouchListener(object : OnSwipeTouchListener(containerView.context) {
-
-            override fun onSwipeTop() {
-                super.onSwipeTop()
-            }
-
-            override fun onSwipeBottom() {
-                super.onSwipeBottom()
-            }
-
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
                 onItemSwiped(task)
             }
 
-            override fun onSwipeRight() {
-                super.onSwipeRight()
+            override fun onClick() {
+                super.onClick()
+                onItemSelected(task)
             }
         })
 

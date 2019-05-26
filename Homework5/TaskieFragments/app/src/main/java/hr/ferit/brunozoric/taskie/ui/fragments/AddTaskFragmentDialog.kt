@@ -57,7 +57,7 @@ class AddTaskFragmentDialog : DialogFragment() {
         context?.let {
             prioritySelector.adapter =
                 ArrayAdapter<Priority>(it, android.R.layout.simple_spinner_dropdown_item, Priority.values())
-            prioritySelector.setSelection(Prefs.getInt("Priority", 0))
+            prioritySelector.setSelection(Prefs.getInt(Prefs.PRIORITY_KEY, 0))
         }
     }
 
@@ -76,7 +76,7 @@ class AddTaskFragmentDialog : DialogFragment() {
         val priority = prioritySelector.selectedItem as Priority
         val task = Task(title = title, description = description, priority = priority)
 
-        Prefs.storeInt("Priority", priority.ordinal)
+        Prefs.storeInt(Prefs.PRIORITY_KEY, priority.ordinal)
         repository.addTask(task)
 
         clearUi()

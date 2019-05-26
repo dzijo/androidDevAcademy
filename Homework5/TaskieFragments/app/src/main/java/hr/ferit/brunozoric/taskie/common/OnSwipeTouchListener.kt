@@ -30,6 +30,16 @@ open class OnSwipeTouchListener(ctx: Context) : View.OnTouchListener {
             return true
         }
 
+        override fun onSingleTapUp(e: MotionEvent?): Boolean {
+            try {
+                onClick()
+                return true
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            return super.onSingleTapUp(e)
+        }
+
         override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
             var result = false
             try {
@@ -69,4 +79,6 @@ open class OnSwipeTouchListener(ctx: Context) : View.OnTouchListener {
     open fun onSwipeTop() {}
 
     open fun onSwipeBottom() {}
+
+    open fun onClick() {}
 }
