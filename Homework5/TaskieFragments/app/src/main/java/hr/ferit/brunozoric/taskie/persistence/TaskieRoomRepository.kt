@@ -22,6 +22,10 @@ class TaskieRoomRepository : TaskieRepository {
         taskieDao.deleteTask(task)
     }
 
+    override fun deleteAllTasks() {
+        taskieDao.deleteAllTasks()
+    }
+
     override fun editTask(task: Task, title: String, description: String, priority: Priority) {
         taskieDao.changeTaskTitle(task.id, title)
         taskieDao.changeTaskDescription(task.id, description)

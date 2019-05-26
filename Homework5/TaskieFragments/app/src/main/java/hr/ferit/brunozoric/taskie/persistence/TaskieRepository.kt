@@ -13,5 +13,7 @@ interface TaskieRepository {
 
     fun deleteTask(task: Task)
 
+    fun deleteAllTasks()
+
     fun editTask(task: Task, title: String, description: String, priority: Priority)
 }

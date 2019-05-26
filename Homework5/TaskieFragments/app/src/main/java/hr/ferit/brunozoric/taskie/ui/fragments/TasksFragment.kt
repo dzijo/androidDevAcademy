@@ -107,9 +107,7 @@ class TasksFragment : BaseFragment(), AddTaskFragmentDialog.TaskAddedListener, C
     override fun clearAllTasks() {
         val data = repository.getAllTasks()
         if (data.isNotEmpty()) {
-            for (d in data) {
-                repository.deleteTask(d)
-            }
+            repository.deleteAllTasks()
             refreshTasks()
         }
     }

@@ -20,6 +20,9 @@ interface TaskieDao {
     @Delete
     fun deleteTask(task: Task)
 
+    @Query("DELETE FROM Task")
+    fun deleteAllTasks()
+
     @Query("UPDATE Task SET title =:title WHERE id=:id")
     fun changeTaskTitle(id: Int, title: String)
 
