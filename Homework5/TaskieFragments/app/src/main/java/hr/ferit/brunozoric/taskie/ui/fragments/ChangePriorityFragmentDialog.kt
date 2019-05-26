@@ -5,13 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment
 import hr.ferit.brunozoric.taskie.R
 import hr.ferit.brunozoric.taskie.model.Priority
-import hr.ferit.brunozoric.taskie.persistence.Prefs
 import kotlinx.android.synthetic.main.fragment_dialog_change_priority.*
-import kotlinx.android.synthetic.main.fragment_dialog_new_task.*
 
 class ChangePriorityFragmentDialog : DialogFragment() {
 

@@ -5,12 +5,10 @@ import android.view.View
 import hr.ferit.brunozoric.taskie.R
 import hr.ferit.brunozoric.taskie.common.EXTRA_TASK_ID
 import hr.ferit.brunozoric.taskie.common.displayToast
-import hr.ferit.brunozoric.taskie.common.invisible
 import hr.ferit.brunozoric.taskie.model.Priority
 import hr.ferit.brunozoric.taskie.model.Task
 import hr.ferit.brunozoric.taskie.persistence.TaskieRoomRepository
 import hr.ferit.brunozoric.taskie.ui.fragments.base.BaseFragment
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_task_details.*
 
 class TaskDetailsFragment : BaseFragment(), ChangePriorityFragmentDialog.PriorityChangedListener {
@@ -44,7 +42,7 @@ class TaskDetailsFragment : BaseFragment(), ChangePriorityFragmentDialog.Priorit
         detailsTaskDescription.setText(task.description)
         priority = task.priority
         detailsPriorityView.setBackgroundResource(priority.getColor())
-        detailsPriorityView.setOnClickListener { changePriority(it) }
+        detailsPriorityView.setOnClickListener { changePriority() }
     }
 
     private fun saveChanges(task: Task) {
@@ -52,7 +50,7 @@ class TaskDetailsFragment : BaseFragment(), ChangePriorityFragmentDialog.Priorit
         activity?.onBackPressed()
     }
 
-    private fun changePriority(it: View) {
+    private fun changePriority() {
         val dialog: ChangePriorityFragmentDialog = ChangePriorityFragmentDialog.newInstance()
         dialog.setPriorityChangedListener(this)
         dialog.show(childFragmentManager, dialog.tag)

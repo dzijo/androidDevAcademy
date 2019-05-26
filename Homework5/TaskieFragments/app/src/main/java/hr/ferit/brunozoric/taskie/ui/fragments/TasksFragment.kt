@@ -8,22 +8,27 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import hr.ferit.brunozoric.taskie.R
-import hr.ferit.brunozoric.taskie.common.EXTRA_SCREEN_TYPE
-import hr.ferit.brunozoric.taskie.common.EXTRA_TASK_ID
-import hr.ferit.brunozoric.taskie.common.gone
-import hr.ferit.brunozoric.taskie.common.visible
+import hr.ferit.brunozoric.taskie.common.*
 import hr.ferit.brunozoric.taskie.model.Task
 import hr.ferit.brunozoric.taskie.persistence.TaskieRoomRepository
 import hr.ferit.brunozoric.taskie.ui.activities.ContainerActivity
 import hr.ferit.brunozoric.taskie.ui.adapters.TaskAdapter
 import hr.ferit.brunozoric.taskie.ui.fragments.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_tasks.*
+import hr.ferit.brunozoric.taskie.ui.activities.MainActivity
+
 
 class TasksFragment : BaseFragment(), AddTaskFragmentDialog.TaskAddedListener, ClearAllListeners, SortBy {
 
     private val repository = TaskieRoomRepository()
-    private val adapter by lazy { TaskAdapter({ onItemSelected(it) }, { onItemSwiped(it) }) }
+    private val adapter by lazy { TaskAdapter({ onItemSelected(it) }, { onItemDelete(it) }) }
     private var sortByPriority = false
+
+    interface SetListener {
+
+        fun setListener(fragment: TasksFragment)
+
+    }
 
     override fun getLayoutResourceId() = R.layout.fragment_tasks
 
@@ -36,13 +41,13 @@ class TasksFragment : BaseFragment(), AddTaskFragmentDialog.TaskAddedListener, C
 
     override fun onResume() {
         super.onResume()
-        this.setHasOptionsMenu(true)
+        (activity as MainActivity).setListener(this)
         refreshTasks()
     }
 
 
-
     private fun initUi() {
+        this.setHasOptionsMenu(true)
         progress.visible()
         noData.visible()
         tasksRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -61,7 +66,7 @@ class TasksFragment : BaseFragment(), AddTaskFragmentDialog.TaskAddedListener, C
         startActivity(detailsIntent)
     }
 
-    private fun onItemSwiped(task: Task) {
+    private fun onItemDelete(task: Task) {
         val c: Context? = this.context
         if (c != null) {
             AlertDialog.Builder(c)
@@ -77,7 +82,7 @@ class TasksFragment : BaseFragment(), AddTaskFragmentDialog.TaskAddedListener, C
     }
 
     private fun refreshTasks() {
-        progress.gone()
+        if (progress != null) progress.gone()
         val data = repository.getAllTasks()
         if (data.isNotEmpty()) {
             noData.gone()
@@ -101,10 +106,12 @@ class TasksFragment : BaseFragment(), AddTaskFragmentDialog.TaskAddedListener, C
 
     override fun clearAllTasks() {
         val data = repository.getAllTasks()
-        for (d in data) {
-            repository.deleteTask(d)
+        if (data.isNotEmpty()) {
+            for (d in data) {
+                repository.deleteTask(d)
+            }
+            refreshTasks()
         }
-        refreshTasks()
     }
 
     override fun sortByPriority() {

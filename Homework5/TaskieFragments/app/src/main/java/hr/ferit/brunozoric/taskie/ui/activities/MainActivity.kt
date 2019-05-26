@@ -12,7 +12,7 @@ import hr.ferit.brunozoric.taskie.ui.fragments.SortBy
 import hr.ferit.brunozoric.taskie.ui.fragments.TasksFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), TasksFragment.SetListener {
 
     private val navListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -62,6 +62,11 @@ class MainActivity : BaseActivity() {
 
     }
 
+    override fun setListener(fragment: TasksFragment) {
+        clearAllListener = fragment
+        sortBy = fragment
+    }
+
     private fun showClearAllDialog() {
         AlertDialog.Builder(this)
             .setTitle(getString(R.string.delete_all_tasks))
@@ -72,8 +77,6 @@ class MainActivity : BaseActivity() {
 
     override fun setUpUi() {
         val fragment = TasksFragment.newInstance()
-        clearAllListener = fragment
-        sortBy = fragment
         showFragment(fragment)
         bottomNavigation.setOnNavigationItemSelectedListener(this.navListener)
     }

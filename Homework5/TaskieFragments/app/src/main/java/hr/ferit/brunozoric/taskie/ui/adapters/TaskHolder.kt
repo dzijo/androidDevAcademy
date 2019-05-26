@@ -1,6 +1,5 @@
 package hr.ferit.brunozoric.taskie.ui.adapters
 
-import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
@@ -12,17 +11,22 @@ import kotlinx.android.synthetic.main.item_task.view.*
 
 class TaskHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
-    fun bindData(task: Task, onItemSelected: (Task) -> Unit, onItemSwiped: (Task) -> Unit) {
+    fun bindData(task: Task, onItemSelected: (Task) -> Unit, onItemDelete: (Task) -> Unit) {
 
         containerView.setOnTouchListener(object : OnSwipeTouchListener(containerView.context) {
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
-                onItemSwiped(task)
+                onItemDelete(task)
             }
 
             override fun onClick() {
                 super.onClick()
                 onItemSelected(task)
+            }
+
+            override fun onLongPress() {
+                super.onLongPress()
+                onItemDelete(task)
             }
         })
 

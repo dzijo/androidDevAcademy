@@ -40,28 +40,29 @@ open class OnSwipeTouchListener(ctx: Context) : View.OnTouchListener {
             return super.onSingleTapUp(e)
         }
 
+        override fun onLongPress(e: MotionEvent?) {
+            try {
+                onLongPress()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+            super.onLongPress(e)
+        }
+
         override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
             var result = false
             try {
-                val diffY = e2.y - e1.y
-                val diffX = e2.x - e1.x
-                if (Math.abs(diffX) > Math.abs(diffY)) {
-                    if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                        if (diffX > 0) {
-                            onSwipeRight()
-                        } else {
-                            onSwipeLeft()
-                        }
-                        result = true
-                    }
-                } else if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (diffY > 0) {
-                        onSwipeBottom()
-                    } else {
-                        onSwipeTop()
-                    }
-                    result = true
+                val distanceX = e2.x - e1.x
+                if (Math.abs(distanceX) > SWIPE_THRESHOLD &&
+                    Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD
+                ) {
+                    if (distanceX > 0)
+                        onSwipeRight()
+                    else
+                        onSwipeLeft()
+                    return true
                 }
+                return false
             } catch (exception: Exception) {
                 exception.printStackTrace()
             }
@@ -69,16 +70,13 @@ open class OnSwipeTouchListener(ctx: Context) : View.OnTouchListener {
             return result
         }
 
-
     }
 
     open fun onSwipeRight() {}
 
     open fun onSwipeLeft() {}
 
-    open fun onSwipeTop() {}
-
-    open fun onSwipeBottom() {}
-
     open fun onClick() {}
+
+    open fun onLongPress() {}
 }
