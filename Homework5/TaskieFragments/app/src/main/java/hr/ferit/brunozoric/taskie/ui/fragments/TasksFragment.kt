@@ -86,7 +86,7 @@ class TasksFragment : BaseFragment(), AddTaskFragmentDialog.TaskAddedListener, C
         val data = repository.getAllTasks()
         if (data.isNotEmpty()) {
             noData.gone()
-            if (sortByPriority) data.sortBy { it.priority.ordinal }
+            if (sortByPriority) data.sortByDescending { it.priority.ordinal }
             else data.sortBy { it.title }
         } else {
             noData.visible()
