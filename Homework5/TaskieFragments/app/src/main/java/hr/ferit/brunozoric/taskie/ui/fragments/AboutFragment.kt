@@ -24,6 +24,11 @@ class AboutFragment : BaseFragment() {
         return inflater.inflate(R.layout.fragment_about, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+        this.setHasOptionsMenu(false)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

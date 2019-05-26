@@ -13,7 +13,7 @@ import hr.ferit.brunozoric.taskie.ui.fragments.base.BaseFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_task_details.*
 
-class TaskDetailsFragment : BaseFragment() {
+class TaskDetailsFragment : BaseFragment(), ChangePriorityFragmentDialog.PriorityChangedListener {
 
     private val repository = TaskieRoomRepository()
     private var taskID = NO_TASK
@@ -49,11 +49,20 @@ class TaskDetailsFragment : BaseFragment() {
 
     private fun saveChanges(task: Task) {
         repository.editTask(task, detailsTaskTitle.text.toString(), detailsTaskDescription.text.toString(), priority)
+        activity?.onBackPressed()
     }
 
     private fun changePriority(it: View) {
-
+        val dialog: ChangePriorityFragmentDialog = ChangePriorityFragmentDialog.newInstance()
+        dialog.setPriorityChangedListener(this)
+        dialog.show(childFragmentManager, dialog.tag)
     }
+
+    override fun onPriorityChanged(priority: Priority) {
+        this.priority = priority
+        detailsPriorityView.setBackgroundResource(priority.getColor())
+    }
+
 
 
     companion object {

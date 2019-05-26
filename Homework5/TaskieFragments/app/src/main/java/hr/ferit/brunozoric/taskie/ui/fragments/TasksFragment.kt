@@ -1,10 +1,11 @@
 package hr.ferit.brunozoric.taskie.ui.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import hr.ferit.brunozoric.taskie.R
 import hr.ferit.brunozoric.taskie.common.EXTRA_SCREEN_TYPE
@@ -18,10 +19,11 @@ import hr.ferit.brunozoric.taskie.ui.adapters.TaskAdapter
 import hr.ferit.brunozoric.taskie.ui.fragments.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_tasks.*
 
-class TasksFragment : BaseFragment(), AddTaskFragmentDialog.TaskAddedListener {
+class TasksFragment : BaseFragment(), AddTaskFragmentDialog.TaskAddedListener, ClearAllListeners, SortBy {
 
     private val repository = TaskieRoomRepository()
     private val adapter by lazy { TaskAdapter({ onItemSelected(it) }, { onItemSwiped(it) }) }
+    private var sortByPriority = false
 
     override fun getLayoutResourceId() = R.layout.fragment_tasks
 
@@ -34,8 +36,11 @@ class TasksFragment : BaseFragment(), AddTaskFragmentDialog.TaskAddedListener {
 
     override fun onResume() {
         super.onResume()
+        this.setHasOptionsMenu(true)
         refreshTasks()
     }
+
+
 
     private fun initUi() {
         progress.visible()
@@ -56,10 +61,19 @@ class TasksFragment : BaseFragment(), AddTaskFragmentDialog.TaskAddedListener {
         startActivity(detailsIntent)
     }
 
-    private fun onItemSwiped(it: Task) {
-        repository.deleteTask(it)
-        Toast.makeText(this.context, "Task deleted", Toast.LENGTH_LONG).show()
-        refreshTasks()
+    private fun onItemSwiped(task: Task) {
+        val c: Context? = this.context
+        if (c != null) {
+            AlertDialog.Builder(c)
+                .setTitle(getString(R.string.delete_this_task))
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes) { _, _ ->
+                    repository.deleteTask(task)
+                    Toast.makeText(c, "Task deleted", Toast.LENGTH_LONG).show()
+                    refreshTasks()
+                }
+                .setNegativeButton(android.R.string.no, null).show()
+        }
     }
 
     private fun refreshTasks() {
@@ -67,6 +81,8 @@ class TasksFragment : BaseFragment(), AddTaskFragmentDialog.TaskAddedListener {
         val data = repository.getAllTasks()
         if (data.isNotEmpty()) {
             noData.gone()
+            if (sortByPriority) data.sortBy { it.priority.ordinal }
+            else data.sortBy { it.title }
         } else {
             noData.visible()
         }
@@ -83,8 +99,26 @@ class TasksFragment : BaseFragment(), AddTaskFragmentDialog.TaskAddedListener {
         refreshTasks()
     }
 
+    override fun clearAllTasks() {
+        val data = repository.getAllTasks()
+        for (d in data) {
+            repository.deleteTask(d)
+        }
+        refreshTasks()
+    }
+
+    override fun sortByPriority() {
+        sortByPriority = true
+        refreshTasks()
+    }
+
+    override fun sortByTitle() {
+        sortByPriority = false
+        refreshTasks()
+    }
+
     companion object {
-        fun newInstance(): Fragment {
+        fun newInstance(): TasksFragment {
             return TasksFragment()
         }
     }
