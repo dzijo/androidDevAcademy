@@ -69,7 +69,6 @@ class TasksFragment : BaseFragment(), AddTaskFragmentDialog.TaskAddedListener {
     }
 
     private fun onItemSelected(task: BackendTask) {
-        Toast.makeText(this.context, task.id, Toast.LENGTH_LONG).show()
         val detailsIntent = Intent(context, ContainerActivity::class.java).apply {
             putExtra(EXTRA_SCREEN_TYPE, ContainerActivity.SCREEN_TASK_DETAILS)
             putExtra(EXTRA_TASK_ID, task.id)
